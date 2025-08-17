@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Atlas Coffee - Globally Inspired Café</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --primary: #6f4e37;
+        --secondary: #c4a484;
+        --light: #f5efe6;
+        --dark: #2c1a12;
+        --accent: #8b5a2b;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Raleway", sans-serif;
+        color: var(--dark);
+        background-color: var(--light);
+        line-height: 1.6;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+      }
+
+      header {
+        position: relative;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .hero-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+
+      .hero-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        padding: 0 20px;
+        background-color: rgba(44, 26, 18, 0.4);
+      }
+
+      .hero-content h1 {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      }
+
+      .hero-content p {
+        font-size: 1.5rem;
+        max-width: 700px;
+        margin-bottom: 2rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background-color: var(--accent);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid var(--accent);
+      }
+
+      .btn:hover {
+        background-color: transparent;
+        color: white;
+        transform: translateY(-3px);
+      }
+
+      .btn-outline {
+        background-color: transparent;
+        border: 2px solid white;
+        margin-left: 15px;
+      }
+
+      .btn-outline:hover {
+        background-color: white;
+        color: var(--primary);
+      }
+
+      section {
+        padding: 80px 20px;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        color: var(--primary);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .about-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        align-items: center;
+      }
+
+      .about-text h2 {
+        margin-bottom: 20px;
+        font-size: 2.5rem;
+      }
+
+      .about-image img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .menu-items {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .menu-item {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .menu-item:hover {
+        transform: translateY(-10px);
+      }
+
+      .menu-item-image {
+        height: 200px;
+        overflow: hidden;
+      }
+
+      .menu-item-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .menu-item:hover .menu-item-image img {
+        transform: scale(1.1);
+      }
+
+      .menu-item-content {
+        padding: 20px;
+      }
+
+      .menu-item-content h3 {
+        margin-bottom: 10px;
+        color: var(--primary);
+      }
+
+      .menu-item-content .price {
+        font-weight: 600;
+        color: var(--accent);
+        font-size: 1.2rem;
+        margin: 10px 0;
+      }
+
+      .location-contact {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+      }
+
+      .location-map {
+        height: 400px;
+        background-color: #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      .contact-info p {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+      }
+
+      .contact-info i {
+        margin-right: 10px;
+        color: var(--accent);
+      }
+
+      .hours-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      .hours-table tr:nth-child(even) {
+        background-color: rgba(196, 164, 132, 0.1);
+      }
+
+      .hours-table th,
+      .hours-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid var(--secondary);
+      }
+
+      footer {
+        background-color: var(--dark);
+        color: var(--light);
+        padding: 40px 0;
+        text-align: center;
+      }
+
+      .social-links {
+        margin: 20px 0;
+      }
+
+      .social-links a {
+        display: inline-block;
+        margin: 0 10px;
+        color: var(--light);
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--secondary);
+      }
+
+      .copyright {
+        margin-top: 20px;
+        font-size: 0.9rem;
+        opacity: 0.8;
+      }
+
+      @media (max-width: 768px) {
+        .hero-content h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero-content p {
+          font-size: 1.2rem;
+        }
+
+        .btn-group {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .btn-outline {
+          margin-left: 0;
+        }
+
+        .about-content,
+        .location-contact {
+          grid-template-columns: 1fr;
+        }
+
+        .about-image {
+          order: -1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="hero-image">
+        <img
+          src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c74bdc02-fda4-4e6d-8687-261af0c249d1.png
+"
+          alt="Cafe interior with cozy seating and warm lighting at Atlas Coffee"
+        />
+      </div>
+      <div class="hero-content">
+        <h1>Atlas Coffee</h1>
+        <p>A journey through the world's finest coffee beans in every cup</p>
+        <div class="btn-group">
+          <a href="#menu" class="btn">View Menu</a>
+          <a href="#contact" class="btn btn-outline">Visit Us</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">Our Story</h2>
+        <div class="about-content">
+          <div class="about-text">
+            <h2>Discover the World in Every Sip</h2>
+            <p>
+              Founded in 2018, Atlas Coffee brings together the finest beans from coffee-growing regions across the globe. Our passionate team of baristas crafts each cup with precision and care, ensuring you experience the unique flavors
+              each origin has to offer.
+            </p>
+            <p>We source directly from ethical, sustainable farms and small batch roasters to deliver exceptional quality while supporting coffee-growing communities worldwide.</p>
+          </div>
+          <div class="about-image">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3b2fae6f-96da-4e84-ad5f-e8417c8ddde1.png" alt="Barista preparing a handcrafted coffee with latte art in Atlas Coffee shop" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" style="background-color: white">
+      <div class="container">
+        <h2 class="section-title">Coffee Selection</h2>
+        <div class="menu-items">
+          <div class="menu-item">
+            <div class="menu-item-image">
+              <img
+                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f7c2120a-3a64-4eea-bfac-d771bcb661dc.png
+
+"
+                alt="Single origin Ethiopia Yirgacheffe coffee with tasting notes of blueberry and citrus"
+              />
+            </div>
+            <div class="menu-item-content">
+              <h3>Ethiopia Yirgacheffe</h3>
+              <p>Bright and floral with notes of blueberry and citrus. Our single-original highlight.</p>
+              <div class="price">Rp 65,000</div>
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-image">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3189630e-810b-4b07-9446-724bb4890e1e.png" alt="Sumatra Mandheling coffee with chocolatey and earthy flavors" />
+            </div>
+            <div class="menu-item-content">
+              <h3>Sumatra Mandheling</h3>
+              <p>Full-bodied with deep chocolatey notes and earthy aroma. Perfect for slow sipping.</p>
+              <div class="price">Rp 70,000</div>
+            </div>
+          </div>
+
+          <div class="menu-item">
+            <div class="menu-item-image">
+              <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a8376ca3-5b93-46c0-b0ea-f852da9bb98d.png" alt="Colombia Huila espresso with caramel and nutty undertones" />
+            </div>
+            <div class="menu-item-content">
+              <h3>Colombia Huila</h3>
+              <p>Balance and sweetness with caramel and nutty undertones. Our best-selling espresso.</p>
+              <div class="price">Rp 60,000</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="location" style="background-color: var(--light)">
+      <div class="container">
+        <h2 class="section-title">Visit Us</h2>
+        <div class="location-contact">
+          <div class="location-map">
+            <img
+              src="Map.png
+"
+              alt="Map showing Atlas Coffee location in Kemang Jakarta with surrounding landmarks and streets"
+            />
+          </div>
+          <div class="contact-info" id="contact">
+            <h3>Contact Information</h3>
+            <p><i class="fas fa-map-marker-alt"></i> Jl. Kemang Raya No. 15B, Kemang, Jakarta Selatan 12560</p>
+            <p><i class="fas fa-phone"></i> +62 21 7195-4567</p>
+            <p><i class="fas fa-envelope"></i> hello@atlascoffee.id</p>
+
+            <h3 style="margin-top: 30px">Hours</h3>
+            <table class="hours-table">
+              <tr>
+                <th>Monday - Friday</th>
+                <td>6:30 AM - 9:00 PM</td>
+              </tr>
+              <tr>
+                <th>Saturday</th>
+                <td>7:00 AM - 10:00 PM</td>
+              </tr>
+              <tr>
+                <th>Sunday</th>
+                <td>7:00 AM - 9:00 PM</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <h2>Atlas Coffee</h2>
+        <p>Bringing the world's finest coffee to your cup</p>
+
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+
+        <p class="copyright">© 2025 Atlas Coffee. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+      // Smooth scrolling for navigation
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+
+      // Simple animation for scroll
+      window.addEventListener("scroll", function () {
+        const scrollPosition = window.scrollY;
+        const header = document.querySelector("header");
+
+        if (scrollPosition > 100) {
+          header.style.transform = "translateY(-50px)";
+        } else {
+          header.style.transform = "translateY(0)";
+        }
+      });
+    </script>
+  </body>
+</html>
